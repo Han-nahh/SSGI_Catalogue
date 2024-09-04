@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from django.contrib import messages
+import dj_database_url
 
 load_dotenv()
 
@@ -30,7 +31,7 @@ SECRET_KEY = 'django-insecure-t2&ebevec5xni&u%00^702nlz!kfemzo0v^dd$d^$72$%y=gp-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -99,17 +100,20 @@ WSGI_APPLICATION = 'usgsfeatures.wsgi.application'
 #         'PORT': '15156',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'SSGI',
-        'USER': 'postgres',
-        'PASSWORD': 'hannai',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'SSGI',
+#         'USER': 'postgres',
+#         'PASSWORD': 'hannai',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+DATABASES={
+    "default":dj_database_url.parse(os.environ.get("DATABASE_URL"))
 
+}
 
 
 # https://railway.app/project/e7cc2fd6-8c81-42ce-8d5b-3667090b8106/service/3bb419d7-2436-4b81-99a8-d9553603c553
